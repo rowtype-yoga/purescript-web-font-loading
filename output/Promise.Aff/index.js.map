@@ -1,0 +1,1 @@
+{"file":"index.js","mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;AAwCA,kBAAA;WAAA;kCACgC;iDAGzB;oCAA0B,yBAAU;eACpC;oCAA0B,wBAAU,aAAa;eAClD;;;;AAzBN,cAAA;WAAA;qBAC2B;mBAAA;6DAA8B,eAAA;2BAAA,gCAAA;mBAA6B,OAAM;;;;;AAE5F,aAAA;yCAGK;sCAAY;qCACM,sHAAgE;;AAMvF,4BACQ,YAAO;AAcf,aAAA;2BACsB,IAAM","names":[],"sources":["../../.spago/p/js-promise-aff-1.0.0/src/Promise/Aff.purs"],"version":3}

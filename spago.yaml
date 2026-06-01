@@ -1,0 +1,16 @@
+package:
+  name: web-font-loading
+  dependencies:
+    - canvas
+    - effect
+    - functions
+    - js-promise
+    - js-promise-aff
+    - prelude
+  test:
+    main: Test.Main
+    dependencies: []
+workspace:
+  packageSet:
+    registry: 77.3.1
+  extraPackages: {}
