@@ -5,12 +5,30 @@
         "path": "./",
         "core": {
           "dependencies": [
-            "canvas",
-            "effect",
-            "functions",
-            "js-promise",
-            "js-promise-aff",
-            "prelude"
+            {
+              "aff": ">=8.0.0 <9.0.0"
+            },
+            {
+              "arraybuffer-types": ">=3.0.2 <4.0.0"
+            },
+            {
+              "canvas": ">=6.0.0 <7.0.0"
+            },
+            {
+              "effect": ">=4.0.0 <5.0.0"
+            },
+            {
+              "js-promise": ">=1.0.0 <2.0.0"
+            },
+            {
+              "js-promise-aff": ">=1.0.0 <2.0.0"
+            },
+            {
+              "nullable": ">=6.0.0 <7.0.0"
+            },
+            {
+              "prelude": ">=6.0.2 <7.0.0"
+            }
           ]
         },
         "test": {
@@ -1059,6 +1077,16 @@
         "prelude",
         "tuples",
         "unfoldable"
+      ]
+    },
+    "nullable": {
+      "type": "registry",
+      "version": "6.0.0",
+      "integrity": "sha256-CDAZk+L9Sc0GCFTkE8n+qdp4Ys8avvnkU+m2hVALt7M=",
+      "dependencies": [
+        "functions",
+        "maybe",
+        "prelude"
       ]
     },
     "numbers": {

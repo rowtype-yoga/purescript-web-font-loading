@@ -1,4 +1,4 @@
--- | Bindings to the CSS Font Loading API on `document.fonts`.
+-- | Bindings to the CSS Font Loading API in documents and workers.
 -- |
 -- | The browser only guarantees a requested font face is available to draw with
 -- | once it has been loaded; `loadFont` resolves when the matching faces are
@@ -7,9 +7,17 @@ module Web.Font.Loading
   ( FontShorthand(..)
   , loadFont
   , fontsReady
+  , checkFont
+  , hasFontSet
+  , supportsFontFace
+  , FontFace
+  , newFontFace
+  , loadFontFace
+  , addFontFace
   ) where
 
 import Prelude
+import Data.ArrayBuffer.Types (ArrayBuffer)
 
 import Effect (Effect)
 import Effect.Aff (Aff)
@@ -37,3 +45,22 @@ fontsReady :: Aff Unit
 fontsReady = toAffE fontsReadyImpl
 
 foreign import fontsReadyImpl :: Effect (Promise Unit)
+
+-- | Native font checks require an available font set; callers choose fallback
+-- | policy by querying `hasFontSet` first.
+foreign import checkFont :: FontShorthand -> Effect Boolean
+foreign import hasFontSet :: Effect Boolean
+foreign import supportsFontFace :: Effect Boolean
+foreign import data FontFace :: Type
+
+foreign import newFontFace
+  :: String
+  -> ArrayBuffer
+  -> { weight :: String, display :: String }
+  -> Effect FontFace
+
+loadFontFace :: FontFace -> Aff Unit
+loadFontFace = toAffE <<< loadFontFaceImpl
+
+foreign import loadFontFaceImpl :: FontFace -> Effect (Promise Unit)
+foreign import addFontFace :: FontFace -> Effect Unit
