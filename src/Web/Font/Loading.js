@@ -14,7 +14,7 @@ export const fontsReadyImpl = () => {
 export const hasFontSet = () => fonts() != null;
 export const checkFont = font => () => fonts().check(font);
 export const supportsFontFace = () => typeof FontFace === "function";
-export const newFontFace = family => source => descriptors => () =>
+export const newFontFaceImpl = family => source => descriptors => () =>
   new FontFace(family, source, descriptors);
 export const loadFontFaceImpl = face => () => face.load().then(() => {});
 export const addFontFace = face => () => { fonts().add(face); };

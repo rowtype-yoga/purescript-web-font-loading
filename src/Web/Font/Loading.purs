@@ -22,6 +22,7 @@ import Data.ArrayBuffer.Types (ArrayBuffer)
 import Effect (Effect)
 import Effect.Aff (Aff)
 import Effect.Uncurried (EffectFn1, runEffectFn1)
+import Prim.Row (class Union)
 import Promise (Promise)
 import Promise.Aff (toAffE)
 
@@ -53,10 +54,22 @@ foreign import hasFontSet :: Effect Boolean
 foreign import supportsFontFace :: Effect Boolean
 foreign import data FontFace :: Type
 
-foreign import newFontFace
-  :: String
+-- | Create a face with an optional CSS `style` descriptor, e.g. `"italic"`.
+-- | Omitting `style` preserves the browser's normal-style default.
+newFontFace
+  :: forall options rest
+   . Union options rest (style :: String)
+  => String
   -> ArrayBuffer
-  -> { weight :: String, display :: String }
+  -> { weight :: String, display :: String | options }
+  -> Effect FontFace
+newFontFace = newFontFaceImpl
+
+foreign import newFontFaceImpl
+  :: forall options
+   . String
+  -> ArrayBuffer
+  -> { weight :: String, display :: String | options }
   -> Effect FontFace
 
 loadFontFace :: FontFace -> Aff Unit
